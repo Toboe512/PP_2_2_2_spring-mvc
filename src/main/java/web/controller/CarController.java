@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.models.Car;
+import web.service.CarService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 public class CarController {
 
     @GetMapping("/car")
-    public String getCar(@RequestParam(value = "count", required = false) String name, ModelMap model) {
+    public String getCar(@RequestParam(value = "count", required = false) String count, ModelMap model) {
 
         List<Car> cars = new ArrayList<>();
 
@@ -23,10 +24,7 @@ public class CarController {
         cars.add(new Car("Модель4", 4, "белый"));
         cars.add(new Car("Модель5", 5, "синий"));
 
-        model.addAttribute("cars", (name != null) ? cars
-                .stream()
-                .limit(Integer.parseInt(name))
-                .toList() : cars);
+        model.addAttribute("cars", CarService.getCarByCount(cars, count));
         return "car";
     }
 }
