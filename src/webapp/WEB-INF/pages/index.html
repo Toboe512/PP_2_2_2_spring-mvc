@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1>Привет</h1>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+
+    <h1>
+        <a href="/car?count=0"> 0 машин </a> <br>
+        <a href="/car?count=3"> 3 Машины </a> <br>
+        <a href="/car?count=4"> 4 Машины </a> <br>
+        <a href="/car?count=5"> 5 Машин </a> <br>
+        <a href="/car?count=7"> 7 Машин </a> <br>
+        <a href="/car"> Машины (Без параметра) </a>
+    </h1>
+</div>
+</body>
+</html>
